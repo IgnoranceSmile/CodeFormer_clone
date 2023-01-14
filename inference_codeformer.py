@@ -252,13 +252,15 @@ if __name__ == '__main__':
         for img_path in img_list:
             img = cv2.imread(img_path)
             video_frames.append(img)
+        print('Vidio frames done.')
         # write images to video
         height, width = video_frames[0].shape[:2]
         if args.suffix is not None:
             video_name = f'{video_name}_{args.suffix}.png'
         save_restore_path = os.path.join(result_root, f'{video_name}.mp4')
         vidwriter = VideoWriter(save_restore_path, height, width, fps, audio)
-         
+        
+        print('Vidio writing...')
         for f in video_frames:
             vidwriter.write_frame(f)
         vidwriter.close()
